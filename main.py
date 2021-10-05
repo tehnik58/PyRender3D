@@ -12,17 +12,21 @@ class Render:
         self.screen = r_tool.display.set_mode(self.RES)
         self.clock = r_tool.time.Clock()
         self.create_object()
+        self.object.scale(14)
+        self.object.translate((-20, -6, 0))
+        self.object.rotation_y(45)
 
 
     def create_object(self):
-        self.camera = Camera(self, [-5, 6, -55])
-        self.prjection = Projection(self)
-        self.object = Object3D(self)
+        self.camera    = Camera(self, [-5, 6, -55])
+        self.projection = Projection(self)
+        self.object    = Object3D(self)
         self.object.translate([0.2, 0.4, 0.2])
 
     def draw(self):
-        self.screen.fill(r_tool.Color('darkgreen'))
+        self.screen.fill(r_tool.Color('black'))
         self.object.draw()
+        self.object.rotation_y(0.005)  
     
     def run(self):
         while True:

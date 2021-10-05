@@ -8,7 +8,7 @@ class Object3D():
         self.render = render
         self.vertexes = np.array([(0, 0, 0, 1), (0, 1 ,0 ,1), (1, 1, 0, 1), (1, 0, 0, 1),
         (0, 0, 1, 1),(0, 1, 1, 1), (1, 1, 1, 1), (1, 0, 1, 1)])
-        self.faces = np.array([(0, 1, 2, 3), (1, 2, 6, 5), (0, 1, 5, 4), (3, 2, 6, 7)])
+        self.faces = np.array([(0, 1, 2, 3), (1, 2, 6, 5), (0, 1, 5, 4), (3, 2, 6, 7), (3, 2, 6, 7), (4, 5, 6, 7)])
 
     def draw(self):
         self.screen_projection()
@@ -24,11 +24,11 @@ class Object3D():
         for face in self.faces:
             polygon = vertexes[face]
             if not np.any((polygon == self.render.H_WIDTH) | (polygon == self.render.H_HEIGHT)):
-                r_tool.drow.polygon(self.render.screen, r_tool.Color('orange'), polygon, 3)
+                r_tool.draw.polygon(self.render.screen, r_tool.Color('white'), polygon, 3)
                 
         for vertex in self.vertexes:
             if not np.any((vertex == self.render.H_WIDTH) | (vertex == self.render.H_HEIGHT)):
-                r_tool.drow.circle(self.render.screen, r_tool.Color('white'), polygon, 6)
+                r_tool.draw.circle(self.render.screen, r_tool.Color('white'), (vertex[1], vertex[2]), 6)
 
     def translate(self, pos):
         self.vertexes = self.vertexes @ matrix_func.translate(pos)
